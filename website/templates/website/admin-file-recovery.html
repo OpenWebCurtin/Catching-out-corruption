@@ -1,0 +1,41 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+{% block title %}File Recovery{% endblock %}
+
+{% block header %}
+<h1>Recover File</h1>
+{% endblock %}
+{% block content %}
+
+<form
+  method="post"
+  accept-charset="utf-8"
+  >
+  {% csrf_token %}
+  <fieldset id="recover" class="">
+    <legend>Recover</legend>
+
+    {% if form.non_field_errors %}
+      <div class="form-errors">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+    
+    {{ form.recover_by }}
+    {% include "website/pretty_form_field.html" with field=form.target_file %}
+    {% include "website/pretty_form_field.html" with field=form.target_uploader %}
+
+  </fieldset>
+
+  <input
+    type="submit"
+    name="submit"
+    value="Recover"
+    id="submit"
+    />
+
+</form>
+
+{% endblock %}
+

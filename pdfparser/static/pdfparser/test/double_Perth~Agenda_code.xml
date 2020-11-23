@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages>
+<page id="1" bbox="0.000,0.000,595.200,841.920" rotate="0">
+<textbox id="0" bbox="72.024,756.340,80.999,767.380">
+<textline bbox="72.024,756.340,80.999,767.380">
+<text font="ABCDEE+Calibri" bbox="72.024,756.340,78.416,767.380" colourspace="DeviceGray" ncolour="0" size="11.040">A</text>
+<text font="ABCDEE+Calibri" bbox="78.504,756.340,80.999,767.380" colourspace="DeviceGray" ncolour="0" size="11.040"> </text>
+<text>
+</text>
+</textline>
+</textbox>
+<textbox id="1" bbox="72.024,733.780,79.799,744.820">
+<textline bbox="72.024,733.780,79.799,744.820">
+<text font="ABCDEE+Calibri" bbox="72.024,733.780,77.312,744.820" colourspace="DeviceGray" ncolour="0" size="11.040">a</text>
+<text font="ABCDEE+Calibri" bbox="77.304,733.780,79.799,744.820" colourspace="DeviceGray" ncolour="0" size="11.040"> </text>
+<text>
+</text>
+</textline>
+</textbox>
+<layout>
+<textgroup bbox="72.024,733.780,80.999,767.380">
+<textbox id="0" bbox="72.024,756.340,80.999,767.380" />
+<textbox id="1" bbox="72.024,733.780,79.799,744.820" />
+</textgroup>
+</layout>
+</page>
+</pages>

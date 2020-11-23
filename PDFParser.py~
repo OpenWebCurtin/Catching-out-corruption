@@ -1,0 +1,49 @@
+import os
+from os import path
+
+from pdfparser.agendaExtractor import agendaExtractor
+from pdfparser.nameGenerator import nameGenerator
+#from pdfparser.AgendaItemExtractor import AgendaItemExtractor
+from pdfparser.pdf2xml import pdf2xml
+from pdfparser.pdf2text import pdf2text
+
+#Main function, imports other programs within file to run their methods
+inPDF = "xyz.pdf"
+
+class pdfparser(object):
+
+    def parse(self,inPDF):
+
+        #renames given filename to minutes.pdf, recognized in other programs
+        if path.exists(inPDF):
+            src = path.realpath(inPDF)
+            os.rename(inPDF,'minutes.pdf')
+        #throw exception for no imported filename recognized
+
+        #Converts pdf document named minutes.pdf to a text document named minutes.txt
+        pdf2text.run()
+
+        #Converts pdf document named minutes.pdf to an xml document named minutes.xml
+        pdf2xml.run()
+
+        #Parses through the minutes.txt document to retrieve council name and council date, returns both of these and filename generated from them
+        gen = nameGenerator()
+        namesplit = gen.run()
+        namesplit = namesplit.split(',')
+
+        #Run with name and council date from above program, this parses through the xml document and splits apart the agendas
+        age = agendaExtractor()
+        filelist = age.run(namesplit[0],namesplit[1])
+
+        agendaParser = AgendaItemExtractor()
+
+
+        for i in filelist:
+            print(i)
+            agendaParser.parse(i)
+        
+
+
+p = pdfparser()
+p.parse(inPDF)
+

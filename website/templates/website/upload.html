@@ -1,0 +1,45 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Upload{% endblock %}
+
+{% block header %}
+<h1>Upload</h1>
+{% endblock header %}
+
+{% block content %}
+
+<form
+  method="POST"
+  enctype="multipart/form-data"
+  accept-charset="utf-8"
+  >
+  {% csrf_token %}
+  <fieldset>
+    <legend>Upload file</legend>
+    {% include "website/pretty_form_field.html" with field=form.file %}
+    {% include "website/pretty_form_field.html" with field=form.type %}
+    {% include "website/pretty_form_field.html" with field=form.document_category %}
+
+  <h3 id="upload-psa-header">Notes</h3>
+  <ul id="upload-psa">
+    <li>Only documents that are publicly accessible should be uploaded using this service.</li>
+    <li>This service should not be used for the purposes of libel.</li>
+  </ul>
+  </fieldset>
+
+  {# include "website/form.html" #}
+
+  <input
+    type="submit"
+    name="submit"
+    value="Upload"
+    id="submit"
+    />
+  <input
+    type="reset"
+    value="Reset"
+    id="reset"
+    />
+</form>
+{% endblock %}
+

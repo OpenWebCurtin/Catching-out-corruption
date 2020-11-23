@@ -1,0 +1,15 @@
+<div class="field" id="{{ field.name }}">
+  {{ field.label_tag }}
+  <!--{{ field.label_suffix }}-->
+  {{ field.as_widget }}
+  {% if field.errors %}
+    <div class="form-errors">
+      {{ field.errors }}
+    </div>
+  {% endif %}
+  {% if field.help_text is not None %}
+    <span class="help-text">
+      {{ field.help_text }}
+    </span>
+  {% endif %}
+</div>

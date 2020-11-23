@@ -1,0 +1,41 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}
+<h1>Login</h1>
+{% endblock %}
+{% block content %}
+
+<form
+  method="POST"
+  accept-charset="utf-8"
+  >
+
+  <!-- This is required for all forms - protects the user against cross-site request forgery. -->
+  {% csrf_token %}
+
+  <fieldset>
+    <legend>Log in</legend>
+    {% if form.non_field_errors %}
+      <div class="form-errors">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+    {% include "website/pretty_form_field.html" with field=form.username %}
+    {% include "website/pretty_form_field.html" with field=form.password %}
+    <ul>
+      <li>Can't log in? <a href="{% url 'reset-password' %}">Reset Password</a>.</li>
+      <li>Need an account? <a href="{% url 'create-account' %}">Create Account</a>.</li>
+    </ul>
+  </fieldset>
+
+
+  <input
+    type="submit"
+    value="Login"
+    />
+</form>
+
+{% endblock %}
+

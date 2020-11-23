@@ -1,0 +1,46 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+{% block title %}File Deletion{% endblock %}
+
+{% block header %}
+<h1>Delete File</h1>
+{% endblock %}
+{% block content %}
+
+<form
+  method="post"
+  accept-charset="utf-8"
+  >
+  {% csrf_token %}
+  <fieldset id="delete" class="">
+    <legend>Delete</legend>
+
+    {% if form.non_field_errors %}
+      <div class="form-errors">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+    
+    {{ form.delete_by }}
+    {% include "website/pretty_form_field.html" with field=form.target_file %}
+    {% include "website/pretty_form_field.html" with field=form.target_uploader %}
+
+  </fieldset>
+
+  <input
+    type="submit"
+    name="submit"
+    value="Delete"
+    id="submit"
+    />
+
+</form>
+
+{% endblock %}
+
+
+{% block scripts-body %}
+<script src="{% static "website/scripts/confirm-deletion.js" %}"></script>
+{% endblock %}
+

@@ -1,0 +1,56 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+{% block title %}User Privilege Modification{% endblock %}
+
+{% block header %}
+<h1>Change Permissions</h1>
+{% endblock %}
+
+{% block content %}
+
+<form
+  action="permissions"
+  method="post"
+  accept-charset="utf-8"
+  >
+
+{% if messages %}
+  <ul id="permissions-change-status">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+  <!-- This is required for all forms - protects the user against cross-site request forgery. -->
+  {% csrf_token %}
+  
+  <fieldset id="permissions" class="">
+    <legend>Change User Permissions</legend>
+    {% if form.non_field_errors %}
+      <div class="form-errors">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    {% include "website/pretty_form_field.html" with field=form.target_user %}
+    {% include "website/pretty_form_field.html" with field=form.target_group %}
+
+    </fieldset>
+
+    <input
+      id="submit"
+      type="submit"
+      value="Submit"
+      />
+  </fieldset>
+</form>
+
+{% endblock %}
+
+{% block scripts-body %}
+<script src="{% static "website/scripts/confirm-setpermissions.js" %}"></script>
+{% endblock %}
+

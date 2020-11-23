@@ -1,0 +1,24 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block header %}
+<h1>Results</h1>
+{% endblock %}
+
+{% block content %}
+{% for item in object_list %}
+  <div class="entity">
+    <h2 class="connection">
+      <a href="{% url 'uploaded-document' item.id %}">{{ item.document }}</a>
+    </h2>
+    <ul>
+      <li>Mentioned {{ item.occurs_total }} times.</li>
+      <li>Mentioned in {{ item.occurs_agenda_items }} agenda items.</li>
+      <li>Normalised score of {{ item.normalised_score }}%.</li>
+    </ul>
+	</div>
+{% endfor %}
+
+{% endblock %}
+

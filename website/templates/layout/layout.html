@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}Untitled{% endblock %} | OpenWeb</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'website/styles.css' %}">
+    {% block scripts-head %}
+    {# This block is provided to add scripts to the start of files. #}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script> 
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="menu">
+      <a href="{% url 'index' %}">
+        <img id="logo"
+          src="{% static 'website/logo.png' %}"
+          alt="Go to OpenWeb" />
+      </a>
+
+      <ul>
+
+        {% if user.is_authenticated %}
+
+          {% if perms.website.search %}
+            <li><a href="{% url 'search' %}">Search</a></li>
+          {% endif %}
+
+          <!-- TODO check if user has permission. -->
+          {# TODO figure out why this is called "website.recover" and not "file.recover" #}
+          {% if perms.website.recover or perms.website.delete %}
+            <li><a href="{% url 'admin' %}">Admin</a></li>
+          {% endif %}
+
+          <!-- TODO check if user has permission. -->
+          {% if perms.website.upload %}
+            <li><a href="{% url 'upload-service' %}">Upload</a></li>
+          {% endif %}
+
+          <li><a href="{% url 'account' %}">Account</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+
+      </ul>
+    </nav>
+
+    <article id="content">
+      <header>
+        {% block header %}
+        <h1>Welcome</h1>
+        {% endblock %}
+      </header>
+      <main>
+        {% block content %}
+        <p>Welcome to the OpenWeb website. Here you can investigate the council meeting minutes documents.</p>
+        {% endblock %}
+      </main>
+    </article>
+
+    {% block scripts-body %}
+    {# This block is provided to add scripts to the end of files. #}
+    {# This is generally preferable because it postpones downloading scripts #}
+    {# ... until the document has been loaded. #}
+    {% endblock %}
+  </body>
+</html>

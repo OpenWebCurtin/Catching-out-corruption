@@ -1,0 +1,23 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+EnvironmentFile=/home/${OPENWEB_USER}/.openweb/environment.sh
+User=${OPENWEB_USER}
+Group=www-data
+WorkingDirectory=/home/${OPENWEB_USER}/${OPENWEB_PATH}
+ExecStart=/home/${OPENWEB_USER}/${OPENWEB_PATH}/.venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn/socket \
+          --pid /run/gunicorn/pid \
+          OpenWeb.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+#PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+

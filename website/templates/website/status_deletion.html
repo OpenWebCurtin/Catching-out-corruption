@@ -1,0 +1,25 @@
+{% extends 'website/status.html' %}
+
+{% block extra_fields %}
+
+{% endblock %}
+
+{% block extra_content %}
+
+<table>
+  <tr>
+    <th>File</th>
+    <th>Uploaded by</th>
+    <th>Type</th>
+  </tr>
+
+  {% for file in item.files %}
+    <tr>
+      <td>{{ file.filename }}</td>
+      <td>{{ file.uploader }}</td>
+      <td>{{ file.type_desc }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block header %}
+<h1>Search</h1>
+{% endblock %}
+
+{% block content %}
+{# This form can be a GET request as it does not deal with any sensitive information. #}
+<form
+  action="search"
+  method="post"
+  accept-charset="utf-8"
+  >
+  
+  {% csrf_token %}
+
+  <fieldset>
+    <legend>Search</legend>
+
+    {% if form.non_field_errors %}
+      <div class="form-errors">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+    {{ form.search_by }}
+
+    <fieldset id="search-filter-by-document">
+      <legend>Document filters</legend>
+      {{ form.fbm.as_widget }} {{ form.fbm.label_tag }}
+      {% include "website/pretty_form_field.html" with field=form.fbm_filename %}
+      {% include "website/pretty_form_field.html" with field=form.fbm_uploader %}
+      <div class="date-range-form">
+        {% include "website/pretty_form_field.html" with field=form.fbm_upload_date_start %}
+        {% include "website/pretty_form_field.html" with field=form.fbm_upload_date_end %}
+      </div>
+    </fieldset>
+    <fieldset id="search-filter-by-contents">
+      <legend>Content filters</legend>
+      
+      {{ form.fbc.as_widget }} {{ form.fbc.label_tag }}
+      {{ form.search_t }}
+      {% include "website/pretty_form_field.html" with field=form.fbc_council %}
+      <div class="date-range-form">
+        {% include "website/pretty_form_field.html" with field=form.fbc_publish_date_start %}
+        {% include "website/pretty_form_field.html" with field=form.fbc_publish_date_end %}
+      </div>
+      </fieldset>
+      <fieldset id="search-terms">
+        <legend>Search Terms</legend>
+        <!-- TODO remove when searching is fixed. -->
+        {% include "website/pretty_form_field.html" with field=form.key_phrase %}
+        {% include "website/pretty_form_field.html" with field=form.key_phrase_type %}
+        {% include "website/pretty_form_field.html" with field=form.key_phrase_importance %}
+
+        <div class="search-term">
+          {% include "website/pretty_form_field.html" with field=form.key_phrase1 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_type1 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_importance1 %}
+        </div>
+        <div class="search-term">
+          {% include "website/pretty_form_field.html" with field=form.key_phrase2 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_type2 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_importance2 %}
+        </div>
+        <div class="search-term">
+          {% include "website/pretty_form_field.html" with field=form.key_phrase3 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_type3 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_importance3 %}
+        </div>
+        <div class="search-term">
+          {% include "website/pretty_form_field.html" with field=form.key_phrase4 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_type4 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_importance4 %}
+        </div>
+        <div class="search-term">
+          {% include "website/pretty_form_field.html" with field=form.key_phrase5 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_type5 %}
+          {% include "website/pretty_form_field.html" with field=form.key_phrase_importance5 %}
+        </div>
+      </fieldset>
+
+    <input
+      type="submit"
+      value="Search"
+      />
+    <input
+      type="reset"
+      value="Reset"
+      />
+
+  </fieldset>
+
+</form>
+
+{% endblock %}
+

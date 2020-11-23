@@ -1,0 +1,14 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Redirecting...{% endblock %}
+
+{% block header %}
+<h1>Login Successful</h1>
+{% endblock %}
+{% block content %}
+<p>Successfully logged in. Redirecting you to the homepage. <a href="{% url 'index' %}">Click here</a> if redirecting is unsuccessful.</p>
+
+<meta http-equiv="refresh" content="5; url={% url 'index' %}" />
+
+{% endblock %}
+

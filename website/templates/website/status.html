@@ -1,0 +1,41 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}PDF Processing Status{% endblock %}
+
+{% block header %}
+<h1>Status</h1>
+{% endblock %}
+{% block content %}
+<table>
+  <thead>
+    <tr>
+      <th>Criteria</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Job</td>
+      <td>{{ object.id }}</td>
+    </tr>
+
+    <tr>
+      <td>Priority</td>
+      <td>{{ object.priority }}</td>
+    </tr>
+
+    {% block extra_fields %}
+    {% endblock %}
+    <tr>
+      <td>Status</td>
+      <td>{{ object.get_status_display }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+{% block extra_content %}
+{% endblock %}
+
+{% endblock %}

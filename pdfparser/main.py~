@@ -1,0 +1,29 @@
+from pdfparser.agendaExtractor import agendaExtractor
+from pdfparser.nameGenerator import nameGenerator
+from pdfparser.pdf2text import pdf2text
+from pdfparser.pdf2xml import pdf2xml
+from pdfparser.AgendaItemExtractor import AgendaItemExtractor
+
+#Main function, imports other programs within file to run their methods
+
+#Converts pdf document named minutes.pdf to a text document named minutes.txt
+pdf2text.run()
+
+#Converts pdf document named minutes.pdf to an xml document named minutes.xml
+pdf2xml.run()
+
+#Parses through the minutes.txt document to retrieve council name and council date, returns both of these and filename generated from them
+namesplit = nameGenerator.run()
+namesplit = namesplit.split(',')
+
+#Run with name and council date from above program, this parses through the xml document and splits apart the agendas
+filelist = agendaExtractor.run(namesplit[0],namesplit[1])
+
+
+parser = AgendaItemExtractor()
+
+
+for i in filelist:
+    print(i)
+    parser.parse(i)
+    

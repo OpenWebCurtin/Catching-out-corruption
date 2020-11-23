@@ -1,0 +1,31 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Job List{% endblock %}
+
+{{ objects }}
+{{ job_list }}
+
+{% block header %}
+<h1>Jobs</h1>
+{% endblock %}
+
+{% block content %}
+<table>
+  <thead>
+    <tr>
+      <th>Job</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for job in job_list %}
+      <tr>
+        <td>{{ job.id }}</td>
+        <td>{{ job.status|get_status }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

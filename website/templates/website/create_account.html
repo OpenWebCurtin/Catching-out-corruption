@@ -1,0 +1,37 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block header %}
+<h1>Create Account</h1>
+{% endblock %}
+{% block content %}
+
+<form
+  method="POST"
+  accept-charset="utf-8"
+  >
+
+  <!-- This is required for all forms - protects the user against cross-site request forgery. -->
+  {% csrf_token %}
+
+  <fieldset>
+    <legend>Create an account</legend>
+    {% include "website/pretty_form_field.html" with field=form.username %}
+    {% include "website/pretty_form_field.html" with field=form.password1 %}
+    {% include "website/pretty_form_field.html" with field=form.password2 %}
+    {% include "website/pretty_form_field.html" with field=form.email %}
+    <ul>
+      <li>Already have an account? <a href="{% url 'login' %}">Log in</a>.</li>
+    </ul>
+  </fieldset>
+
+
+  <input
+    type="submit"
+    value="Sign up"
+    />
+</form>
+
+{% endblock %}
+

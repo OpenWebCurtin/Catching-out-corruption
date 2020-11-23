@@ -1,0 +1,24 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block header %}
+<h1>Results</h1>
+
+{% endblock %}
+
+{% block content %}
+{% for item in object_list %}
+  <div class="entity">
+    {# TODO maintain with future changes to search feature/database. #}
+    <h2 class="connection">
+      {{ item.kp1 }} {%if item.kp2 != ""%}&harr; {{ item.kp2 }} {% endif %}{%if item.kp3 != ""%} &harr; {{ item.kp3 }} {% endif %} {%if item.kp4 != ""%} &harr; {{ item.kp4 }} {% endif %} {%if item.kp5 != ""%} &harr; {{ item.kp5 }} {% endif %}
+    </h2>
+    <span class="via">via <a href="/minutes/{{ item.agenda_item_file }}.pdf">{{ item.document }} - {{ item.agenda_item }}</a></span>
+    <div class="description">{{ item.description }}</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock %}
+

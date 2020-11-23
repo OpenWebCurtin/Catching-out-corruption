@@ -1,0 +1,20 @@
+<fieldset>
+  <legend>{{ form.legend }}</legend>
+  {# include "website/pretty_form_fields.html" with form=form #}
+
+  {# for next_form in form.forms #}
+    {# include "website/form.html" with form=next_form #}
+  {# endfor #}
+
+  <fieldset>
+    <legend>{{ form.doc_search.legend }}</legend>
+    {{ form.doc_search }}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{ form.content_search.legend }}</legend>
+    {{ form.content_search }}
+  </fieldset>
+
+</fieldset>
+

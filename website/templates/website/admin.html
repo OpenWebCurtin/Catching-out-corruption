@@ -1,0 +1,31 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Admin Portal{% endblock %}
+
+{% block header %}
+<h1>Administrative Tasks</h1>
+{% endblock %}
+{% block content %}
+
+<h2><a href="{% url 'admin-file-deletion' %}">Delete a file</a></h2>
+<p>Mark a file for deletion if the file was uploaded accidentally or the upload process was otherwise performe in error.
+   Subsequent information searches will not consider any documents marked for deletion.
+   Deletion of files will be scheduled for 30 days upon its marking for deletion.
+</p>
+
+<h2><a href="{% url 'admin-file-recovery' %}">Recover a file</a></h2>
+<p>Recover a file that was previously marked for deletion by an administrator.
+   This file will no longer be marked for deletion.
+   Subsequent information searches will consider a recovered file.
+   File recovery takes effect immediately.
+</p>
+
+
+<h2><a href="{% url 'user-privilege-modification' %}">Set User Privileges</a></h2>
+<p>Modify user privileges to allow another user to upload documents, search the database or perform administrative tasks.</p>
+
+<h2><a href="{% url 'job-list' %}">Jobs</a></h2>
+<p>View a list of jobs and their statuses.</p>
+
+{% endblock %}
+
