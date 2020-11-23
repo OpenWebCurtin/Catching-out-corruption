@@ -89,7 +89,7 @@ Create a database user by running the following commands:
 	psql
 
 	# Create a user account.
-	CREATE USER webservice WITH PASSWORD 'CatchTheCorruption96;';
+	CREATE USER webservice WITH PASSWORD '<password>';
 
 	# Create the database.
 	CREATE DATABASE 'corruptioncatcher';
